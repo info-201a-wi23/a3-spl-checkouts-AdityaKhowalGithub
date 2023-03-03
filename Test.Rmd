@@ -1,0 +1,67 @@
+---
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+The following information was calculated using the DPYLR library
+
+-   What is the average number of checkouts for each item?
+
+    -   The average number of checkouts for each item is **12.03879**
+
+-   What is the month or year with the most/least checkouts for a book that you're interested in?
+
+    -   The book I choose was Percy Jackson book 2, [the sea of monsters]{.underline}.
+        I don't usually read books so I choose one from when I was a kid.
+        There were multiple versions so I decided to calculate the results of all of them together.
+
+    -   The month with the most checkouts is January
+
+    -   The month with the least checkouts is **February**
+
+-   What is the month or year with the most/least checkouts for e-books?
+
+    -   The month with the most checkouts for e-books is also **January**
+    -   The month with the least checkouts for e-books is **February**
+
+-   How has the number of print book checkouts changed over time?
+
+    -   The number of print book check outs has greatly decreased over time; decreasing by **70021** over the course of 10 years
+
+-   Who collected/published the data?
+
+    -   The data was collected and published by the City of Seattle.
+
+-   What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
+
+    -   The data includes a monthly count of Seattle Public Library(SPL) checkouts by title for physical and electronic items. The data begins with checkouts that occurred from 2013- 2022 for titles checked out at least 5 times a month. The data contains columns such as UsageClass, CheckoutType, MaterialType, CheckoutYear, CheckoutMonth, Checkouts, Title, and then information about the book itself such as ISBN, Publisher, etc.
+
+-   How was the data collected or generated?
+
+    -   The data was collected by logging all physical item checkouts from Seattle Public Library. Electronic item checkouts were also recorded using different methods depending on the checkout type and service used.
+
+-   Why was the data collected?
+
+    -   The data was collected to provide a public record of library usage and to support research and analysis on library trends.
+
+-   What, if any, ethical questions do you need to consider when working with this data?
+
+    -   Some Ethical Questions while working with this data:
+
+        -   How might the data reveal personal information or preferences of library patrons?
+
+        -   How might the data be used to influence or manipulate library policies or funding?
+
+        -   How might the data be biased or inaccurate due to missing or incomplete records?
+
+-   What are possible limitations or problems with this data?
+    (at least 200 words)
+
+    -   Some Possible Limitations/Problems:
+
+        -   The data does not include renewals, so it may underestimate the actual usage of some items.
+
+        -   The data may not reflect the current availability or popularity of some items due to changes in collection size, format, or demand over time.
+
+        -   The data may contain errors or inconsistencies due to different methods of recording electronic item checkouts.

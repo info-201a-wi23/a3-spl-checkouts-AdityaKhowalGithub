@@ -7,80 +7,127 @@ output: html_document
 
 An introduction of the data and a description of the trends/books/items you are choosing to analyze (and why!)
 
+The Seattle Public Library (SPL) is one of the largest library systems here in Washington. It serves over 2 million residents in Seattle and surrounding areas with a collection of over 2.4 million physical and electronic items. The SPL also provides various programs and services to support the educational, cultural, and recreational needs of its patrons.
+
+In this analysis, I will use a dataset that contains a monthly count of SPL checkouts by title for physical and electronic items from 2013 to 2023. This dataset only includes items checked out at least 5 times a month. The dataset was obtained from the City of Seattle Open Data portal and includes over 34 million records. The dataset is narrowed like this to focus on the most relevent items. The main objective of this analysis is to explore the overall trends of Seattle library usage in the last decade.
+
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
+The following information was calculated using the DPYLR library
 
-These will likely be calculated using your DPLYR skills, answering questions such as:
+-   What is the average number of checkouts for each item?
 
-- What is the average number of checkouts for each item?
-- What is the month or year with the most/least checkouts for a book that you're interested in?
-- What is the month or year with the most/least checkouts for ebooks?
-- How has the number of print book checkouts changed over time?
+    -   The average number of checkouts for each item is **12.03879**
 
-Feel free to calculate and report values that you find relevant.
+-   What is the month or year with the most/least checkouts for a book that you're interested in?
+
+    -   The book I choose was Percy Jackson book 2, [the sea of monsters]{.underline}. I don't usually read books so I choose one from when I was a kid. There were multiple versions so I decided to calculate the results of all of them together.
+
+    -   The month with the most checkouts is January
+
+    -   The month with the least checkouts is **February**
+
+-   What is the month or year with the most/least checkouts for e-books?
+
+    -   The month with the most checkouts for e-books is also **January**
+    -   The month with the least checkouts for e-books is **February**
+
+-   How has the number of print book checkouts changed over time?
+
+    -   The number of print book check outs has greatly decreased over time; decreasing by **70021** over the course of 10 years
 
 ### The Dataset
 
-- Who collected/published the data?  
-- What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
-- How was the data collected or generated?  
-- Why was the data collected?  
-- What, if any, ethical questions do you need to consider when working with this data?  
-- What are possible limitations or problems with this data?   (at least 200 words)
+-   Who collected/published the data?
 
+    -   The data was collected and published by the City of Seattle.
 
-### First Trends Over Time Chart
+-   What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+    -   The data includes a monthly count of Seattle Public Library(SPL) checkouts by title for physical and electronic items. The data begins with checkouts that occurred from 2013- 2022 for titles checked out at least 5 times a month. The data contains columns such as UsageClass, CheckoutType, MaterialType, CheckoutYear, CheckoutMonth, Checkouts, Title, and then information about the book itself such as ISBN, Publisher, etc.
 
-The first chart that you will create and include will show the trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+-   How was the data collected or generated?
 
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
+    -   The data was collected by logging all physical item checkouts from Seattle Public Library. Electronic item checkouts were also recorded using different methods depending on the checkout type and service used.
 
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
+-   Why was the data collected?
 
-Here's an example of how to run an R script inside an RMarkdown file:
+    -   The data was collected to provide a public record of library usage and to support research and analysis on library trends.
 
-``````{r, echo = FALSE, warning = FALSE, code = readLines("chart1_example.R")}
+-   What, if any, ethical questions do you need to consider when working with this data?
+
+    -   Some Ethical Questions while working with this data:
+
+        -   How might the data reveal personal information or preferences of library patrons?
+
+        -   How might the data be used to influence or manipulate library policies or funding?
+
+        -   How might the data be biased or inaccurate due to missing or incomplete records?
+
+-   What are possible limitations or problems with this data? (at least 200 words)
+
+    -   Some Possible Limitations/Problems:
+
+        -   The data does not include renewals, so it may underestimate the actual usage of some items.
+
+        -   The data may not reflect the current availability or popularity of some items due to changes in collection size, format, or demand over time.
+
+        -   The data may contain errors or inconsistencies due to different methods of recording electronic item checkouts.
+
+### Ebook checkouts over time checkout
+
+My First chart explores the trend in ebook checkouts over time. I realize that ebooks have becoming increasingly popular over the last ten years. Whether from e-readers like a kindle or just reading on a mobile device, ebooks are very convenient and it would be interesting to see the trends of their use.
+
+The first and most obvious trend is the general increase in e-book checkouts. However it is also surprising how steady the change was. From my perspective ebooks were rising in popularity but not by this much.
+
+The second trend can be seen around the time of covid there is a huge jump around the same time as COVID which is probably due to many people having extra time from being at home, and not being able to physically pick up books in a library.
+
+```{r, echo=FALSE, message = FALSE}
+
+library("dplyr")
+library("stringr")
+library("ggplot2")
+library("scales")
+spl_df <- read.csv("2013-2023-5-Checkouts-SPL.csv")
+
+spl_df <- spl_df %>%
+  mutate(date = paste(CheckoutYear, CheckoutMonth, "01", sep = "-")) %>%
+  mutate(date = as.Date(date))
+source("chart1_example.R")
+lineplot1
 ```
 
 ### Second Trends Over Time Chart
 
-Include a chart. Make sure to describe why you included the chart, and what patterns emerged
+Horizon is one of the services being used by SPL to manage various library functions. It is a software used to checkout and circulate their catalog to the public. I wanted to dive deeper into the specific softwares used by SPL to see what happens. The main and most surprising trend that I see is how the amount of Horizon checkouts has greatly decreased. This is contrased but the rise in e-book checkouts shown previously. I think this general decline is caused by other apps like libby and overdrive being more popular and more convenient.
 
-The second chart that you will create and include will show another trend over time of your variable/topic/interest. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+While looking deeper into this trend, I analyzed the total paper checkouts over time. Horizon handled both ebooks and paper, and the decline in paper book checkouts corresponds with the Horizon checkouts over time. The second trend that I notice is that both these declines correspond to when COVID hit and libraries had to close. This lines up to other trends in the data that also support this.
 
-- Show more than one, but fewer than ~10 trends
-  - For example, two books, or 5 different mediums
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear - legend title
-In your .Rmd file, make sure to describe why you included the chart, and what patterns emerged
+```{r, echo = FALSE}
+source("chart2_example.R")
+lineplot2
+```
 
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+```{r, echo = FALSE}
+source("summary.R")
+change_in_print_checkout
 ```
 
 ### Your Choice
 
-The last chart is up to you. It could be a line plot, scatter plot, histogram, bar plot, stacked bar plot, and more. Here are some requirements to help guide your design:
+I chose to compare all the checkout types against each other. I had to split this into two graphs. One showing overall and one with skewed scales. The reason why is when comparing all of the checkout types, the amount of checkouts for Horizon and overdrive is so big that the rest of the types look like they are at 0. In my second chart I split this into two to compare the three less used ones as well.
 
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
+The biggest trend is seen in the overwhelming amount of people using Horizon. I think this is the main check out type at Seattle public library and has been for some time. Overdrive is a more convenient version of this which makes it also a popular option. The other ones seem to be less convenient and there fore less popular.
 
-Here's an example of how to run an R script inside an RMarkdown file:
+The second trend I see is that there seems to more people using Zinio than Freegal or Hoopla. I looked deeper into the reason why. Freegal is a music service, and Hooply is oriented towards movies, tv shows, music and audiobooks more than books. With services like spotify and netflix already being so popular this explains why there is little demand for these checkout types. Zinio offers mostly magazines, which currently don't have a dedicated service like spotify, but also not as much demand as books.
 
-``````{r, echo = FALSE, code = readLines("chart2_example.R")}
+```{r, echo = FALSE}
+source("chart3.R")
+normalPlot
+
 ```
 
-
+```{r, echo = FALSE}
+source("chart3.R")
+split_plot
+```
